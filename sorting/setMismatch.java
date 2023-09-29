@@ -1,0 +1,33 @@
+package sorting;
+//https://leetcode.com/problems/set-mismatch/
+//https://www.youtube.com/watch?v=JfinxytTYFQ&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=20
+class setMismatch {
+		
+    public int[] findErrorNums(int[] arr) {
+    	int i=0;
+		while(i< arr.length) {
+			int correct = arr[i]-1;
+			if(arr[i] != arr[correct]) {
+				swap(arr,i,correct);
+			}else {
+				i++;
+			}
+		}
+		
+		//search for first missing number
+		for (int index = 0; index < arr.length; index++) {
+			if(arr[index]!= index+1) {
+				return new int[] {arr[index],index+1};
+			}
+		}
+		return new int[] {-1,-1};
+    }
+    
+    static void swap(int[] arr, int first, int second) {
+		int temp=arr[first];
+		arr[first]=arr[second];
+		arr[second]= temp;
+	}
+
+    
+}
